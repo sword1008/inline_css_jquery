@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 	<script src="jquery.inlineStyler.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		var cssRules = {
 			'propertyGroups' : {
@@ -19,23 +20,53 @@
 				'headings' : ['font-size', 'font-family',]
 			},
 			'elementGroups' : {
-				'block' : ['DIV', 'P', 'H1'], 
-				'inline' : ['SPAN'], 
+				'block' : ['DIV', 'P', 'H1'],
+				'inline' : ['SPAN'],
 				'headings' : ['H1', 'H2', 'H3', 'H4', 'H5', 'H6']
 			}
 		}
 		$(window).load(function() {
-			$('#before').val( $('iFrame').contents().find("body").html() );
-			$('iFrame').contents().find("body").inlineStyler( cssRules );
-			$('#after').val( $('iFrame').contents().find("body").html() );
+			$('#before').val( $("div.container").html() );
+			$("div.container").inlineStyler( cssRules );
+			$('#after').val( $("div.container").html() );
 		});
 	</script>
 </head>
 <body>
-	<iframe src="demo-frame.html" frameborder="0" id="iFrame"></iframe>
-	<form id="postInline" action="/postContent" method="post">
-		<textarea name="before" id="before">LOADING..... </textarea><textarea name="after" id="after">LOADING..... </textarea>
-		<button class="btn btn-info" type="submit">POST</button>
-	</form>
+<div class="container" id="Frame">
+	<h2> HTML content of page with styles inline</h2>
+
+	<table class="table">
+		<thead>
+		<tr>
+			<th>Firstname</th>
+			<th>Lastname</th>
+			<th>Email</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>John</td>
+			<td>Doe</td>
+			<td>john@example.com</td>
+		</tr>
+		<tr>
+			<td>Mary</td>
+			<td>Moe</td>
+			<td>mary@example.com</td>
+		</tr>
+		<tr>
+			<td>July</td>
+			<td>Dooley</td>
+			<td>july@example.com</td>
+		</tr>
+		</tbody>
+	</table>
+
+</div>
+<form id="postInline" action="/postContent" method="post">
+	<textarea name="before" id="before">LOADING..... </textarea><textarea name="after" id="after">LOADING..... </textarea>
+	<button class="btn btn-info" type="submit">POST</button>
+</form>
 
 </body>
