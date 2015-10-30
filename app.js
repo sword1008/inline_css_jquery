@@ -23,10 +23,16 @@ app.get('/jquery.inlineStyler.min.js', function(req, res){
 
 app.post('/postContent', function(req, res){
     var content= req.body.after;
-    var newone = '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script> <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"> </script><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>';
-    var result = content + newone;
-    console.log('content:' + req.body.after);
-    res.send(result);
+    fs = require('fs')
+    fs.readFile('./path/script.html', 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+        var result = content + data;
+        console.log('content:' + req.body.after);
+        res.send(result);
+    });
+
 });
 
 var server = app.listen(3000, function () {
